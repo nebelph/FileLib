@@ -5,17 +5,24 @@
 int main()
 {
     try {
-        std::string filename = "file.txt";
-        FileHandler fh(filename);
-        
-        std::string wr_line = "Hello World!";
-        fh.write_line(wr_line);
+        std::string filename_1 = "file.txt";
+        FileHandler fh1( filename_1 );
 
-        std::string r_line;
-        fh.read_line(r_line);
-        std::cout << "Read: " << r_line << std::endl;
+        std::string filename_2 = "file.txt";
+        FileHandler fh2( filename_2 );
 
-    } catch (const std::exception& e) {
+        std::string r_line_2;
+        fh2.read_line( r_line_2 );
+        std::cout << "Read: " << r_line_2 << std::endl;
+
+        std::string wr_line_1 = "Hello World!";
+        fh1.write_line( wr_line_1 );
+
+        std::string r_line_1;
+        fh1.read_line( r_line_1 );
+        std::cout << "Read: " << r_line_1 << std::endl;
+
+    } catch ( const std::exception &e ) {
         std::cerr << e.what() << std::endl;
     }
 
