@@ -2,34 +2,32 @@
 
 FileHandler::FileHandler( std::string filename ) : filename_m( filename )
 {
-    file = new std::fstream( filename_m, std::ios::in | std::ios::out );
-    if ( file->is_open() ) {
+    file_m = std::make_unique<std::fstream>( filename_m, std::ios::in | std::ios::out );
+
+    if ( file_m->is_open() ) {
         std::cout << filename_m << " is opened." << std::endl;
+    } else {
+        std::cerr << filename_m << " can not be opened." << std::endl;
     }
 }
 
-void FileHandler::write_line()
+void FileHandler::write_line( std::string line )
 {
-    *file << "Some information 1" << std::endl;
+    *file_m << line << std::endl;
 }
 
-void FileHandler::read_line()
+void FileHandler::read_line( std::string &line )
 {
-    file->clear();
-    file->seekg(0);
+    file_m->clear();
+    file_m->seekg( 0 );
 
-    std::string line;
-
-    while ( std::getline( *file, line ) ) {
-        std::cout << "Read: " << line << std::endl;
-    }
+    std::getline( *file_m, line );
 }
 
 FileHandler::~FileHandler()
 {
-    if ( file->is_open() ) {
-        file->close();
-        delete file;
+    if ( file_m->is_open() ) {
+        file_m->close();
 
         std::cout << filename_m << " is closed." << std::endl;
     } else {

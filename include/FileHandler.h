@@ -8,11 +8,11 @@ class FileHandler {
 public:
     FileHandler( std::string );
 
-    void write_line();
-    void read_line();
+    void write_line( std::string );
+    void read_line( std::string& );
 
     std::string filename_m;
-    std::fstream *file;
+    std::unique_ptr<std::fstream> file_m;
 
     ~FileHandler();
 
