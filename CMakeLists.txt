@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(file_lib_prog
     ${CMAKE_SOURCE_DIR}/main.cpp
     ${CMAKE_SOURCE_DIR}/source/FileHandler.cpp
+    ${CMAKE_SOURCE_DIR}/source/utils.cpp
 )
 
 target_include_directories(file_lib_prog PUBLIC
